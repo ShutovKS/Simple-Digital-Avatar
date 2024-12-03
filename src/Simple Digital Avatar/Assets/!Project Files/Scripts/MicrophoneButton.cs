@@ -9,6 +9,11 @@ public class MicrophoneButton : MonoBehaviour
 
     private Button _button;
 
+    public void SetIsInteractable(bool isInteractable)
+    {
+        _button.interactable = isInteractable;
+    }
+
     private void Awake()
     {
         _button = GetComponent<Button>();
