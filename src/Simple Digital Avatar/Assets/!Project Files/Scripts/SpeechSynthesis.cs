@@ -21,7 +21,7 @@ public class SpeechSynthesisWithPiper : ISpeechSynthesis, IDisposable
 
     private readonly Worker _worker;
 
-    public SpeechSynthesisWithPiper(ModelAsset model, string language = "en-us", int sampleRate = 22050)
+    public SpeechSynthesisWithPiper(ModelAsset model, string language = "ru", int sampleRate = 22050)
     {
         _voice = language;
         _sampleRate = sampleRate;

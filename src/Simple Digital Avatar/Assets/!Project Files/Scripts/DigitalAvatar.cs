@@ -33,7 +33,8 @@ public class DigitalAvatar : MonoBehaviour
         var text = await RecognizeSpeechAsync(audioData);
 
         Debug.Log($"Распознанный текст: {text}");
-
+        
+        _conversationGeneration.StopGeneration();
         await _conversationGeneration.StartGeneration(text);
     }
 
@@ -52,10 +53,11 @@ public class DigitalAvatar : MonoBehaviour
     private async void OnMessageReceivedCompleted()
     {
         Debug.Log($"Получено сообщение: {_generatedText}");
+        
+        var audioClip = await _speechSynthesis.TextToSpeech(_generatedText);
+        audioSource.clip = audioClip;
+        audioSource.Play();
 
         microphoneButton.SetIsInteractable(true);
-
-        var audioClip = await _speechSynthesis.TextToSpeech(_generatedText);
-        audioSource.PlayOneShot(audioClip);
     }
 }
